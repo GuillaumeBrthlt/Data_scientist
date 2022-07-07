@@ -16,40 +16,40 @@ end
 
 def smallest_value
   my_hash = create_hash
-  sorted_list = my_hash.sort_by {|crypto, amount| amount.to_f}.to_h
-  small = sorted_list.values.first
-  sorted_list_2 = sorted_list.filter {|crypto, amount| amount == small }.to_h
+  my_hash = my_hash.sort_by {|crypto, amount| amount.to_f}.to_h
+  small = my_hash.values.first
+  my_hash = my_hash.filter {|crypto, amount| amount == small }.to_h
   puts "La ou les crypto qui ont la plus petite valeur sont:"
-  sorted_list_2.each {|crypto, amount| puts "#{crypto}: #{amount} " }
+  my_hash.each {|crypto, amount| puts "#{crypto}: #{amount} " }
   puts
 end
 
 def highest_value
   my_hash = create_hash
-  sorted_list = my_hash.sort_by {|crypto, amount| amount.to_f}.to_h
-  high = sorted_list.values.last
-  sorted_list_2 = sorted_list.filter {|crypto, amount| amount == high }.to_h
+  my_hash = my_hash.sort_by {|crypto, amount| amount.to_f}.to_h
+  high = my_hash.values.last
+  my_hash = my_hash.filter {|crypto, amount| amount == high }.to_h
   puts "La ou les crypto qui ont la plus grosse valeur sont:"
-  sorted_list_2.each {|crypto, amount| puts "#{crypto}: #{amount} " }
+  my_hash.each {|crypto, amount| puts "#{crypto}: #{amount} " }
   puts
 end
 
 def higher_under_six
   my_hash = create_hash
-  sorted_list = my_hash.filter {|crypto, amount| amount.to_f < 6000 }
-  sorted_list_2 = sorted_list.sort_by {|crypto, amount| amount.to_f}.to_h
-  high = sorted_list_2.values.last
-  sorted_list_3 = sorted_list_2.filter {|crypto, amount| amount == high }.to_h
+  my_hash = my_hash.filter {|crypto, amount| amount.to_f < 6000 }
+  my_hash = my_hash.sort_by {|crypto, amount| amount.to_f}.to_h
+  high = my_hash.values.last
+  my_hash = my_hash.filter {|crypto, amount| amount == high }.to_h
   puts "La devise la plus chère parmi celles dont le cours est inférieur à 6000 est:"
-  sorted_list_3.each {|crypto, amount| puts "#{crypto}: #{amount} " }
+  my_hash.each {|crypto, amount| puts "#{crypto}: #{amount} " }
   puts
 end
 
 def under_six
   my_hash = create_hash
-  sorted_list = my_hash.filter {|crypto, amount| amount.to_f < 6000 }.to_h
+  my_hash = my_hash.filter {|crypto, amount| amount.to_f < 6000 }.to_h
   puts "Les devises dont le cours est inférieur à 6000 sont:"
-  sorted_list.each {|crypto, amount| print "#{crypto} ; " }
+  my_hash.each {|crypto, amount| print "#{crypto} ; " }
   puts
   puts
 end

@@ -9,7 +9,7 @@ end
 
 def wich_shorter
   handles = inputs
-  handles.sort_by! {|element| element.size }
+  handles.sort_by!(&:size)
   handles[0]
 end
 
@@ -27,13 +27,13 @@ end
 
 def aplha_order
   handles = inputs
-  handles.sort!
+  handles.sort_by!(&:downcase)
   handles[0..10]
 end
 
 def size_order
   handles = inputs
-  handles.sort_by! {|element| element.size }
+  handles.sort_by!(&:size)
   handles[0..10]
 end
 
@@ -53,30 +53,78 @@ def last
   end
 end
 
-def results
-  puts "il y a #{count_total} handles dans la liste"
-  puts
-  puts "le hande le plus court de la liste est #{wich_shorter} "
+def results(question)
+  if question == 1
+    puts "il y a #{count_total} handles dans la liste"
+    puts
+  elsif question == 2
+    puts "le hande le plus court de la liste est #{wich_shorter} "
+    puts
+  elsif question == 3
+    puts "il y a #{five_size} handles de 5 caractères"
+    puts
+  elsif question == 4
+    puts "il y a #{start_capital} handles commençant par une majuscule"
+    puts
+  elsif question == 5
+    puts "Voici le début de la liste triée dans l'ordre alphabétique: "
+    puts aplha_order
+    puts
+  elsif question == 6
+    puts "Voici le début de la liste triée par taille: "
+    puts size_order
+    puts
+  elsif question == 7
+    puts "@epenser est placé en position #{finder} "
+    puts
+  else
+    puts "Voici la répartion des handles par taille de ces derniers: "
+    last
+    puts
+  end
+end
+
+def ask_answer
+  puts "dites moi à quoi vous voulez répondre en me donnant un numéro parmis les suivantes: "
   puts 
-  puts "il y a #{five_size} handles de 5 caractères"
-  puts
-  puts "il y a #{start_capital} handles commençant par une majuscule"
-  puts
-  puts "Voici le début de la liste triée dans l'ordre alphabétique: "
-  puts aplha_order
-  puts
-  puts "Voici le début de la liste triée par taille: "
-  puts size_order
-  puts
-  puts "@epenser est placé en position #{finder} "
-  puts
-  puts "Voici la répartion des handles par taille de ces derniers: "
-  last
-  puts
+  puts "1 -- Combien y a-t-il de handle dans cette array ?"
+  puts "2 -- Quel est le handle le plus court de cette liste ?"
+  puts "3 -- Combien y-a-t'il de handle contenant 5 caractères (le @ ne compte pas pour un caractère)"
+  puts "4 -- Combien commencent par une majuscule (première lettre juste après le @) ?"
+  puts "5 -- Trie la liste de handle par ordre alphabétique."
+  puts "6 -- Trie la liste de handle par taille des handle (les plus petits en premiers, les plus grands après)"
+  puts "7 -- Quelle est la position dans l'array de la personne @epenser ?"
+  puts "8 -- Sors-moi une répartition des handle par taille de ces derniers (nombre de handle avec 1 caractère, nombre de handle avec 2 caractères, nombre de handle avec 3 caractères, etc)"
+  print "> "
+  question = gets.chomp.to_i
+  until question >= 1 and question <= 8
+    puts "les questions vont de 1 à 8 !!"
+    print "> "
+    question = gets.chomp.to_i
+  end
+  return question
+end
+
+def welcome
+  puts "Souhaitez-vous répondre à une question (yes/no)?"
+  print "> "
+  continue = gets.chomp.to_s
+  until continue == "no" do
+    if continue == "yes"
+      question = ask_answer
+      results(question)
+      puts
+    else
+      puts "Vous devez répondre par yes ou no !!"
+    end
+    puts "Souhaitez-vous répondre à une autre question (yes/no)?"
+    print "> "
+    continue = gets.chomp.to_s
+  end
 end
 
 def perform
-  results
+  welcome
 end
 
 perform
