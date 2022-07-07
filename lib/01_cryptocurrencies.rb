@@ -55,10 +55,82 @@ def under_six
 end
 
 def perform
-  highest_value
-  smallest_value
-  under_six
-  higher_under_six
+  welcome
+end
+
+def results(question)
+  if question == 1
+    highest_value
+    puts
+  elsif question == 2
+    smallest_value
+    puts
+  elsif question == 3
+    under_six
+    puts
+  else
+    higher_under_six
+    puts
+  end
+end
+
+def ask_answer
+  system("clear")
+  puts "dites moi à quoi vous voulez répondre en me donnant un numéro parmis les suivantes: "
+  puts 
+  puts "1 -- Combien y a-t-il de handle dans cette array ?"
+  puts "2 -- Quel est le handle le plus court de cette liste ?"
+  puts "3 -- Combien y-a-t'il de handle contenant 5 caractères (le @ ne compte pas pour un caractère)"
+  puts "4 -- Combien commencent par une majuscule (première lettre juste après le @) ?"
+  puts "5 -- Trie la liste de handle par ordre alphabétique."
+  puts "6 -- Trie la liste de handle par taille des handle (les plus petits en premiers, les plus grands après)"
+  puts "7 -- Quelle est la position dans l'array de la personne @epenser ?"
+  puts "8 -- Sors-moi une répartition des handle par taille de ces derniers (nombre de handle avec 1 caractère, nombre de handle avec 2 caractères, nombre de handle avec 3 caractères, etc)"
+  print "> "
+  question = gets.chomp.to_i
+  until question >= 1 and question <= 8
+    puts "les questions vont de 1 à 8 !!"
+    print "> "
+    question = gets.chomp.to_i
+  end
+  return question
+end
+
+def ask_answer
+  system("clear")
+  puts "dites moi à quoi vous voulez répondre en me donnant un numéro parmis les suivantes: "
+  puts 
+  puts "1 -- Quelles sont la ou les crypto qui ont la plus grosse valeur ?"
+  puts "2 -- Quelles sont la ou les crypto qui ont la plus petite valeur ?"
+  puts "3 -- Quelles sont les devises dont le cours est inférieur à 6000 ?"
+  puts "4 -- Quelle est la devise la plus chère parmi celles dont le cours est inférieur à 6000 ?"
+  print "> "
+  question = gets.chomp.to_i
+  until question >= 1 and question <= 4
+    puts "les questions vont de 1 à 4 !!"
+    print "> "
+    question = gets.chomp.to_i
+  end
+  return question
+end
+
+def welcome
+  puts "Souhaitez-vous répondre à une question (yes/no)?"
+  print "> "
+  continue = gets.chomp.to_s
+  until continue == "no" do
+    if continue == "yes"
+      question = ask_answer
+      system("clear")
+      results(question)
+      puts
+    else
+      puts "Vous devez répondre par yes ou no !!"
+    end
+    puts "Souhaitez-vous répondre à une autre question (yes/no)?"
+    print "> "
+    continue = gets.chomp.to_s
+  end
 end
 
 perform

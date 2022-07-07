@@ -85,6 +85,7 @@ def results(question)
 end
 
 def ask_answer
+  system("clear")
   puts "dites moi à quoi vous voulez répondre en me donnant un numéro parmis les suivantes: "
   puts 
   puts "1 -- Combien y a-t-il de handle dans cette array ?"
@@ -112,6 +113,7 @@ def welcome
   until continue == "no" do
     if continue == "yes"
       question = ask_answer
+      system("clear")
       results(question)
       puts
     else
