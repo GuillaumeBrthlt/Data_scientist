@@ -36,7 +36,7 @@ end
 
 def higher_under_six
   my_hash = create_hash
-  my_hash = my_hash.filter {|crypto, amount| amount.to_f < 6000 }
+  my_hash = my_hash.filter {|crypto, amount| amount.to_f < 6000 }.to_h
   my_hash = my_hash.sort_by {|crypto, amount| amount.to_f}.to_h
   high = my_hash.values.last
   my_hash = my_hash.filter {|crypto, amount| amount == high }.to_h
